@@ -1,0 +1,27 @@
+info:
+  build:
+    name: @project.name@
+    version: @project.version@
+
+server:
+  shutdown: graceful
+
+spring:
+  application:
+    name: @project.name@
+  profiles: prd
+
+springfox:
+  pathMapping: /
+
+feign:
+  nominatim:
+    name: nominatimClient
+    url: https://nominatim.openstreetmap.org
+  collectionapi:
+    weather:
+      name: weatherClient
+      url: https://api.collectapi.com/weather
+
+collectionapi:
+  token: {API_TOKEN_COLLECTIONAPI}
