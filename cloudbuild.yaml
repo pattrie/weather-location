@@ -1,0 +1,7 @@
+steps:
+  - name: 'maven:3.8.1'
+    entrypoint: 'mvn'
+    args: ['package']
+
+  - name: 'gcr.io/cloud-builders/gcloud'
+    args: ['app', 'deploy']
