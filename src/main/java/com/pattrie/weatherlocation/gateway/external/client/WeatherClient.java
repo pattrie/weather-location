@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @FeignClient(
-    name = "weatherClient",
+    name = "${feign.collectionapi.weather.name:weatherClient}",
     url = "${feign.collectionapi.weather.url:weatherClient}")
 public interface WeatherClient {
   @GetMapping("/getWeather?data.lang={languageTag}&data.city={city}")

@@ -9,6 +9,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import static java.util.Objects.nonNull;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -53,6 +55,6 @@ public class ReverseGeocodeJsonResponse {
 
   @JsonIgnore
   public Address getAddressDomain() {
-    return address.toDomain();
+    return nonNull(address) ? address.toDomain() : null;
   }
 }

@@ -13,12 +13,13 @@
     <version>0.0.1-SNAPSHOT</version>
     <name>weather-location</name>
     <description>Weather prediction web project</description>
+    <packaging>war</packaging>
     <properties>
-        <java.version>11</java.version>
+        <java.version>17</java.version>
         <springfox-boot-starter-version>3.0.0</springfox-boot-starter-version>
-        <maven.compiler.source>11</maven.compiler.source>
-        <maven.compiler.target>11</maven.compiler.target>
-        <packaging>war</packaging>
+        <maven.compiler.source>17</maven.compiler.source>
+        <maven.compiler.target>17</maven.compiler.target>
+        <app.deploy.version>1</app.deploy.version>
     </properties>
     <dependencies>
         <dependency>
@@ -34,17 +35,6 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
-            <exclusions>
-                <exclusion>
-                    <groupId>org.springframework.boot</groupId>
-                    <artifactId>spring-boot-starter-tomcat</artifactId>
-                </exclusion>
-            </exclusions>
-        </dependency>
-
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-undertow</artifactId>
         </dependency>
 
         <dependency>
@@ -105,6 +95,7 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+                <version>3.2.4</version>
                 <configuration>
                     <excludes>
                         <exclude>
@@ -113,6 +104,16 @@
                         </exclude>
                     </excludes>
                 </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-war-plugin</artifactId>
+                <version>3.3.1</version>
+            </plugin>
+            <plugin>
+                <groupId>com.google.cloud.tools</groupId>
+                <artifactId>appengine-maven-plugin</artifactId>
+                <version>2.7.0</version>
             </plugin>
         </plugins>
     </build>

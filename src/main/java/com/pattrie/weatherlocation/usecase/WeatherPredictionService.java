@@ -1,7 +1,6 @@
 package com.pattrie.weatherlocation.usecase;
 
 import static java.util.Objects.nonNull;
-import static java.util.Objects.requireNonNullElse;
 
 import com.pattrie.weatherlocation.common.exception.UnexpectedResultException;
 import com.pattrie.weatherlocation.domain.RegionInformation;
@@ -27,10 +26,12 @@ public class WeatherPredictionService {
     var isWeatherPredictionValid = nonNull(weatherPrediction) && weatherPrediction.isSuccess();
     if (isWeatherPredictionValid) return weatherPrediction;
 
+    final boolean isItAValidMessage =
+        nonNull(weatherPrediction) && nonNull(weatherPrediction.getMessage());
     var message =
-        requireNonNullElse(
-            weatherPrediction.getMessage(),
-            String.format("Unexpected result of %s", collectApiWeatherGateway.getClass().getName()));
+        isItAValidMessage
+            ? weatherPrediction.getMessage()
+            : "Unexpected result of %s".formatted(collectApiWeatherGateway.getClass().getName());
     throw new UnexpectedResultException(message);
   }
 
